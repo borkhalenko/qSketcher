@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>rec/about-icon.png</file>
+        <file>rec/pause-icon.png</file>
+        <file>rec/scan_icon.png</file>
+        <file>rec/play-icon.png</file>
+        <file>rec/open-icon.png</file>
+        <file>rec/draw-icon.png</file>
+    </qresource>
+    <qresource prefix="/img">
+        <file>rec/some_img2.png</file>
+        <file>rec/some_img.png</file>
+    </qresource>
+</RCC>

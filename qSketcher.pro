@@ -13,8 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    BaseSketcher.cpp \
+    OriginalPainter.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    BaseSketcher.h \
+    OriginalPainter.h
 
 FORMS    += mainwindow.ui
+
+RESOURCES += \
+    recources.qrc
