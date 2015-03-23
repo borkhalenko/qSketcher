@@ -4,25 +4,19 @@
 BaseSketcher::BaseSketcher(const QImage &img, QWidget *parent)
         : QWidget(parent)
         , innerImage_(img.size(), img.format())
-        , timeInterval_(1){
+        , timeInterval_(5){
     currentPixel_=0;
     innerImage_.fill(Qt::white);
-    fillSetOfPoints(img);
     timer_=new QTimer(this);
-    connect(timer_, SIGNAL(timeout()), SLOT(sketchStep()));
-    connect(this, SIGNAL(sketchIsOver()), timer_, SLOT(stop()));
-    timer_->start(timeInterval_);
 }
 
 BaseSketcher::~BaseSketcher() {
 
 }
 
-void BaseSketcher::paintEvent(QPaintEvent *event) {
+void BaseSketcher::paintEvent(QPaintEvent*) {
     QPainter painter(this);
     painter.drawImage(getStartPoint().x(), getStartPoint().y(), innerImage_);
- //  std::cerr<<"LinearPainter redrawing..."<<" x:"<<points_.at(currentPixel_).first.x()
- //           <<" y:"<<points_.at(currentPixel_).first.y()<<std::endl;
 }
 
 QPoint& BaseSketcher::getStartPoint() {
@@ -47,7 +41,11 @@ void BaseSketcher::sketchStep() {
     repaint();
 }
 
-void BaseSketcher::fillSetOfPoints(const QImage& img) {
+void BaseSketcher::sketch(const QImage& img, int interval) {
+    timeInterval_=interval;
+    connect(timer_, SIGNAL(timeout()), SLOT(sketchStep()));
+    connect(this, SIGNAL(sketchIsOver()), timer_, SLOT(stop()));
+    timer_->start(timeInterval_);
     for (int i=0; i<innerImage_.height(); ++i){
         for (int j=0; j<innerImage_.width(); ++j){
             points_.push_back(qMakePair(QPoint(j,i), img.pixel(j,i) ));

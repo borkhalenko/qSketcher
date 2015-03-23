@@ -7,6 +7,7 @@
 #include <QMainWindow>
 #include <QImage>
 #include <memory>
+#include "BaseSketcher.h"
 
 namespace Ui{
     class MainWindow;
@@ -25,7 +26,7 @@ public slots:
     void about();
 private:
     Ui::MainWindow *ui_;
-    QWidget *mainWidget_;
+    BaseSketcher *mainWidget_;
     QImage image_;
 };
 

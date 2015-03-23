@@ -4,14 +4,16 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "OriginalPainter.h"
+#include "originalsketcher.h"
 #include "BaseSketcher.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui_(new Ui::MainWindow){
     ui_->setupUi(this);
     image_= QImage(":/img/rec/some_img2.png");
-    mainWidget_=new OriginalPainter(image_, this);
+    mainWidget_=new OriginalSketcher(image_, this);
     this->setCentralWidget(mainWidget_);
+    mainWidget_->sketch(image_, 4);
 }
 
 MainWindow::~MainWindow(){
@@ -29,7 +31,7 @@ void MainWindow::open() {
             return;
         }
         delete mainWidget_;
-        mainWidget_=new OriginalPainter(image_, this);
+        mainWidget_=new OriginalSketcher(image_, this);
         this->setCentralWidget(mainWidget_);
         //this->resize(mainWidget_->size());
     }
