@@ -3,17 +3,21 @@
 #include <QtWidgets/qfiledialog.h>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "OriginalPainter.h"
+
 #include "originalsketcher.h"
-#include "BaseSketcher.h"
+#include "linearsketcher.h"
+
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui_(new Ui::MainWindow){
     ui_->setupUi(this);
     image_= QImage(":/img/rec/some_img2.png");
-    mainWidget_=new OriginalSketcher(image_, this);
+    mainWidget_=new OriginalSketcher(this);
     this->setCentralWidget(mainWidget_);
-    mainWidget_->sketch(image_, 4);
+    //TODO: ? What should I do, when some of delivered classes
+    // must have overrided functions with different arguments?
+    mainWidget_->sketch(image_, 0);
 }
 
 MainWindow::~MainWindow(){
@@ -31,7 +35,8 @@ void MainWindow::open() {
             return;
         }
         delete mainWidget_;
-        mainWidget_=new OriginalSketcher(image_, this);
+        mainWidget_=new OriginalSketcher(this);
+        mainWidget_->sketch(image_, 0);
         this->setCentralWidget(mainWidget_);
         //this->resize(mainWidget_->size());
     }
@@ -45,10 +50,11 @@ void MainWindow::about() {
 
 void MainWindow::play() {
     if (!image_.isNull()) {
+        qDebug()<<"I'm in play()";
         delete mainWidget_;
-        mainWidget_=new BaseSketcher(image_, this);
-        this->setCentralWidget(mainWidget_);
-        //this->resize(mainWidget_->size());
+        mainWidget_=new LinearSketcher(this);
+        mainWidget_->sketch(image_, 1);
+        this->setCentralWidget(mainWidget_); //?
     }
 }
 

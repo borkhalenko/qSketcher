@@ -16,13 +16,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     BaseSketcher.cpp \
-    OriginalPainter.cpp \
-    originalsketcher.cpp
+    originalsketcher.cpp \
+    linearsketcher.cpp
 
 HEADERS  += mainwindow.h \
+    originalsketcher.h \
     BaseSketcher.h \
-    OriginalPainter.h \
-    originalsketcher.h
+    linearsketcher.h
 
 FORMS    += mainwindow.ui
 

@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Sketcher</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="recources.qrc">
+    <normaloff>:/icons/rec/draw-icon.png</normaloff>:/icons/rec/draw-icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QMenuBar" name="menuBar">

@@ -5,9 +5,9 @@
 class OriginalSketcher : public BaseSketcher{
 Q_OBJECT
 public:
-    OriginalSketcher(const QImage &img, QWidget *parent=0);
+    OriginalSketcher(QWidget *parent=0);
+    virtual ~OriginalSketcher();
     virtual void sketch(const QImage &img, int interval);
-    ~OriginalSketcher();
 protected slots:
     void sketchStep();
 };
