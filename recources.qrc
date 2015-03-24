@@ -10,5 +10,7 @@
     <qresource prefix="/img">
         <file>rec/some_img2.png</file>
         <file>rec/some_img.png</file>
+        <file>rec/handandpencil.png</file>
+        <file>rec/pencil.png</file>
     </qresource>
 </RCC>

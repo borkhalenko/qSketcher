@@ -9,9 +9,7 @@ public:
     virtual ~LinearSketcher();
     virtual void sketch(const QImage &img, int interval);
 protected slots:
-    void sketchStep();
-private:
-    int currentPixel_;
+    void sketchStep();    
 };
 
 #endif // LINEARSKETCHER_H

@@ -19,6 +19,7 @@ protected:
     QImage innerImage_;
     QVector<QPair<QPoint, QRgb > > points_;
     bool sketchIsOver_;
+    int currentPixel_;
     QTimer* timer_;
 protected slots:
     virtual void sketchStep() = 0;
@@ -27,6 +28,7 @@ private:
     QPoint startPoint_;
     //int currentPixel_;
     int timeInterval_;
+    QImage imgPencil_;
 };
 
 #endif //_QSKETCHER_BASESKETCHER_H_

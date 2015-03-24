@@ -12,7 +12,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui_(new Ui::MainWindow){
     ui_->setupUi(this);
-    image_= QImage(":/img/rec/some_img2.png");
+    image_= QImage(":/img/rec/handandpencil.png");
     mainWidget_=new OriginalSketcher(this);
     this->setCentralWidget(mainWidget_);
     //TODO: ? What should I do, when some of delivered classes

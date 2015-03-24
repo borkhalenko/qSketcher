@@ -6,6 +6,7 @@ BaseSketcher::BaseSketcher(QWidget *parent)
         , timeInterval_(5){
     innerImage_=QImage();
     innerImage_.fill(Qt::white);
+    imgPencil_=QImage(":/img/rec/pencil.png");
     timer_=new QTimer(this);
 }
 
@@ -15,8 +16,14 @@ BaseSketcher::~BaseSketcher() {
 
 void BaseSketcher::paintEvent(QPaintEvent*) {
     QPainter painter(this);
-    if (!innerImage_.isNull())
-        painter.drawImage(getStartPoint().x(), getStartPoint().y(), innerImage_);
+    if (!innerImage_.isNull()){
+        int startX=getStartPoint().x();
+        int startY=getStartPoint().y();
+        painter.drawImage(startX, startY, innerImage_);
+        if (!sketchIsOver_){
+            painter.drawImage(points_.at(currentPixel_).first.x()+startX, points_.at(currentPixel_).first.y()+startY, imgPencil_);
+        }
+    }
 }
 
 QPoint& BaseSketcher::getStartPoint() {
