@@ -19,7 +19,6 @@ void LinearSketcher::sketch(const QImage &img, int interval){
                 points_.push_back(qMakePair(QPoint(j,i), img.pixel(j,i) ));
         }
     }
-    qDebug()<<"Size:"<<points_.size();
     BaseSketcher::sketch(img, interval);
 }
 

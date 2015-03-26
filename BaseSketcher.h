@@ -9,15 +9,18 @@
 class BaseSketcher : public QWidget {
 Q_OBJECT
 public:
+    //TODO: need to change tQPointPair in delivered classes, where is possible.
+    typedef QPair<QPoint, QRgb> tQPointPair;
     explicit BaseSketcher(QWidget *parent=0);
     ~BaseSketcher();
     virtual void paintEvent(QPaintEvent* event);
     virtual void sketch(const QImage& img, int interval);
+    virtual void changeState(bool state);
 signals:
     void sketchIsOver();
 protected:
     QImage innerImage_;
-    QVector<QPair<QPoint, QRgb > > points_;
+    QVector<tQPointPair> points_;
     bool sketchIsOver_;
     int currentPixel_;
     QTimer* timer_;

@@ -2,8 +2,7 @@
 #include <iostream>
 
 BaseSketcher::BaseSketcher(QWidget *parent)
-        : QWidget(parent)
-        , timeInterval_(5){
+        : QWidget(parent){
     innerImage_=QImage();
     innerImage_.fill(Qt::white);
     imgPencil_=QImage(":/img/rec/pencil.png");
@@ -20,7 +19,7 @@ void BaseSketcher::paintEvent(QPaintEvent*) {
         int startX=getStartPoint().x();
         int startY=getStartPoint().y();
         painter.drawImage(startX, startY, innerImage_);
-        if (!sketchIsOver_){
+        if (!sketchIsOver_ && currentPixel_ < points_.size()){
             painter.drawImage(points_.at(currentPixel_).first.x()+startX, points_.at(currentPixel_).first.y()+startY, imgPencil_);
         }
     }
@@ -56,4 +55,8 @@ void BaseSketcher::sketch(const QImage& img, int interval) {
     connect(timer_, SIGNAL(timeout()), SLOT(sketchStep()));
     connect(this, SIGNAL(sketchIsOver()), timer_, SLOT(stop()));
     timer_->start(timeInterval_);
+}
+
+void BaseSketcher::changeState(bool state){
+    sketchIsOver_=state;
 }

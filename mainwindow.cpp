@@ -6,6 +6,8 @@
 
 #include "originalsketcher.h"
 #include "linearsketcher.h"
+#include "smartlinearsketcher.h"
+#include "levelbasedsketcher.h"
 
 #include <QDebug>
 
@@ -51,13 +53,13 @@ void MainWindow::about() {
 void MainWindow::play() {
     if (!image_.isNull()) {
         qDebug()<<"I'm in play()";
-        delete mainWidget_;
-        mainWidget_=new LinearSketcher(this);
-        mainWidget_->sketch(image_, 1);
+        //delete mainWidget_;
+        mainWidget_=new LevelBasedSketcher(this);
+        mainWidget_->sketch(image_, 10);
         this->setCentralWidget(mainWidget_); //?
     }
 }
 
 void MainWindow::pause() {
-
+   mainWidget_->changeState(true);
 }

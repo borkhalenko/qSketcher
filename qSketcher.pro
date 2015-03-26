@@ -17,12 +17,16 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     BaseSketcher.cpp \
     originalsketcher.cpp \
-    linearsketcher.cpp
+    linearsketcher.cpp \
+    smartlinearsketcher.cpp \
+    levelbasedsketcher.cpp
 
 HEADERS  += mainwindow.h \
     originalsketcher.h \
     BaseSketcher.h \
-    linearsketcher.h
+    linearsketcher.h \
+    smartlinearsketcher.h \
+    levelbasedsketcher.h
 
 FORMS    += mainwindow.ui
 

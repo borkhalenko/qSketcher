@@ -7,11 +7,7 @@ OriginalSketcher::OriginalSketcher(QWidget *parent)
 
 void OriginalSketcher::sketch(const QImage &img, int){
     BaseSketcher::sketch(img, 0);
-    for (int i=0; i<img.height(); ++i){
-        for (int j=0; j<img.width(); ++j){
-            points_.push_back(qMakePair(QPoint(j,i), img.pixel(j,i) ));
-        }
-    }
+    innerImage_=QImage(img);
 }
 
 OriginalSketcher::~OriginalSketcher(){
@@ -24,11 +20,11 @@ void OriginalSketcher::sketchStep(){
         return;
     }
     qDebug()<<"All is ok!";
-    foreach (auto point, points_) {
-        innerImage_.setPixel(point.first.x(), point.first.y(), point.second);
-    }
-    repaint();
+//    foreach (auto point, points_) {
+//        innerImage_.setPixel(point.first.x(), point.first.y(), point.second);
+//    }
     sketchIsOver_=true;
     emit sketchIsOver();
+    repaint();
 
 }
