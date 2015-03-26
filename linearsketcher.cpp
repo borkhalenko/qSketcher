@@ -21,18 +21,3 @@ void LinearSketcher::sketch(const QImage &img, int interval){
     }
     BaseSketcher::sketch(img, interval);
 }
-
-void LinearSketcher::sketchStep(){
-    if (currentPixel_ < points_.size()){
-        int x=points_.at(currentPixel_).first.x();
-        int y=points_.at(currentPixel_).first.y();
-        QRgb color=points_.at(currentPixel_).second;
-        innerImage_.setPixel(x, y, color);
-        currentPixel_++;
-    }
-    else{
-        sketchIsOver_=true;
-        emit sketchIsOver();
-    }
-    repaint();
-}

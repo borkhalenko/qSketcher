@@ -36,39 +36,9 @@ void LevelBasedSketcher::sketch(const QImage &img, int interval){
         sortPoints(levelPoints_[i]);
         points_<<levelPoints_[i];
     }
-    qDebug()<<"points_ size:"<<points_.size();
     qDebug()<<"levelPoints_ is sorted";
-
     BaseSketcher::sketch(img, interval);
 }
-
-//TODO: need to refactor
-void LevelBasedSketcher::sketchStep(){
-//    for (int i=0; i<numOfLevels_; ++i){
-//        if (levelCurrentPoint_[i]<levelPoints_.at(i).size()){
-//            int x=levelPoints_.at(i).at(levelCurrentPoint_[i]).first.x();
-//            int y=levelPoints_.at(i).at(levelCurrentPoint_[i]).first.y();
-//            QRgb color=levelPoints_.at(i).at(levelCurrentPoint_[i]).second;
-//            innerImage_.setPixel(x, y, color);
-//            levelCurrentPoint_[i]++;
-//            return;
-//        }
-//    }
-    if (currentPixel_ < points_.size()){
-        int x=points_.at(currentPixel_).first.x();
-        int y=points_.at(currentPixel_).first.y();
-        QRgb color=points_.at(currentPixel_).second;
-        innerImage_.setPixel(x, y, color);
-        currentPixel_++;
-    }
-    else{
-        sketchIsOver_=true;
-        emit sketchIsOver();
-    }
-    repaint();
-}
-
-//error: passing 'const QVector<>' as 'this' argument of 'void QVector<T>::push_back(const T&)  discards qualifiers [-fpermissive]
 
 // Sorting algorithm. It works like selection sort...
 void sortPoints(QVector<BaseSketcher::tQPointPair> &points){

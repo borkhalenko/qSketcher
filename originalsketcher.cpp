@@ -16,13 +16,8 @@ OriginalSketcher::~OriginalSketcher(){
 
 void OriginalSketcher::sketchStep(){
     if (sketchIsOver_){
-        qDebug()<<"Bad!";
         return;
     }
-    qDebug()<<"All is ok!";
-//    foreach (auto point, points_) {
-//        innerImage_.setPixel(point.first.x(), point.first.y(), point.second);
-//    }
     sketchIsOver_=true;
     emit sketchIsOver();
     repaint();

@@ -25,7 +25,7 @@ protected:
     int currentPixel_;
     QTimer* timer_;
 protected slots:
-    virtual void sketchStep() = 0;
+    virtual void sketchStep();
 private:
     QPoint& getStartPoint();
     QPoint startPoint_;

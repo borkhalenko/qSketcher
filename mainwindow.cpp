@@ -14,7 +14,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
     ui_(new Ui::MainWindow){
     ui_->setupUi(this);
-    image_= QImage(":/img/rec/handandpencil.png");
+    image_= QImage(":/img/rec/some_img2.png");
     mainWidget_=new OriginalSketcher(this);
     this->setCentralWidget(mainWidget_);
     //TODO: ? What should I do, when some of delivered classes
@@ -37,6 +37,7 @@ void MainWindow::open() {
             return;
         }
         delete mainWidget_;
+        this->resize(this->size()-mainWidget_->size()+image_.size());
         mainWidget_=new OriginalSketcher(this);
         mainWidget_->sketch(image_, 0);
         this->setCentralWidget(mainWidget_);
@@ -55,7 +56,7 @@ void MainWindow::play() {
         qDebug()<<"I'm in play()";
         //delete mainWidget_;
         mainWidget_=new LevelBasedSketcher(this);
-        mainWidget_->sketch(image_, 10);
+        mainWidget_->sketch(image_, 15);
         this->setCentralWidget(mainWidget_); //?
     }
 }

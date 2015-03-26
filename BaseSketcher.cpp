@@ -1,6 +1,6 @@
 #include "BaseSketcher.h"
 #include <iostream>
-
+#include <QDebug>
 BaseSketcher::BaseSketcher(QWidget *parent)
         : QWidget(parent){
     innerImage_=QImage();
@@ -33,19 +33,20 @@ QPoint& BaseSketcher::getStartPoint() {
     return startPoint_;
 }
 
-//void BaseSketcher::sketchStep() {
-////    if (sketchIsOver_)
-////        return;
-////    int x=points_.at(currentPixel_).first.x();
-////    int y=points_.at(currentPixel_).first.y();
-////    QRgb color=points_.at(currentPixel_).second;
-////    innerImage_.setPixel(x, y, color);
-////    if (++currentPixel_>=points_.size()){
-////        sketchIsOver_=true;
-////        emit sketchIsOver();
-////    }
-//    repaint();
-//}
+void BaseSketcher::sketchStep() {
+    if (currentPixel_ < points_.size()){
+        int x=points_.at(currentPixel_).first.x();
+        int y=points_.at(currentPixel_).first.y();
+        QRgb color=points_.at(currentPixel_).second;
+        innerImage_.setPixel(x, y, color);
+        currentPixel_++;
+    }
+    else{
+        sketchIsOver_=true;
+        emit sketchIsOver();
+    }
+    repaint();
+}
 
 void BaseSketcher::sketch(const QImage& img, int interval) {
     timeInterval_=interval;
