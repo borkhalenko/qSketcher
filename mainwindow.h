@@ -24,6 +24,8 @@ public slots:
     void play();
     void pause();
     void about();
+protected:
+    virtual void resizeEvent(QResizeEvent *);
 private:
     Ui::MainWindow *ui_;
     BaseSketcher *mainWidget_;

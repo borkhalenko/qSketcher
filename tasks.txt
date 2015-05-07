@@ -1,0 +1,6 @@
+1. Implement correct behavior, when main window is resized.
+2. Sketcher must correct process transparented pixels (it can sketch it as white color).
+3. Nearest neighbor search  must work more quickly. It works too slowly now.
+4. User must be able to set up sketch level values and level count.
+5. Add an algorithm to sketch color pictures (using red, green and blue pencils).
+6. User must be able to choise sketching algorithm using program menu.

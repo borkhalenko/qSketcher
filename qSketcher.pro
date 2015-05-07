@@ -32,3 +32,6 @@ FORMS    += mainwindow.ui
 
 RESOURCES += \
     recources.qrc
+
+OTHER_FILES += \
+    tasks.txt

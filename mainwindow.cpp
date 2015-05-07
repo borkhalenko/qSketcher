@@ -48,13 +48,18 @@ void MainWindow::open() {
 void MainWindow::about() {
     QMessageBox::about(this, tr("About Sketcher"),
             tr("<p>The <b>Sketcher</b> program can sketch the image "
-                    "and show animate process.</p>"));
+               "and show animate process.</p>"));
+}
+
+void MainWindow::resizeEvent(QResizeEvent *){
+
+    //mainWidget_->repaint();
 }
 
 void MainWindow::play() {
     if (!image_.isNull()) {
         qDebug()<<"I'm in play()";
-        //delete mainWidget_;
+        delete mainWidget_;
         mainWidget_=new LevelBasedSketcher(this);
         mainWidget_->sketch(image_, 15);
         this->setCentralWidget(mainWidget_); //?
