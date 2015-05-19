@@ -7,7 +7,7 @@
 #include <QMainWindow>
 #include <QImage>
 #include <memory>
-#include "BaseSketcher.h"
+#include "baseSketcher.h"
 
 namespace Ui{
     class MainWindow;
@@ -30,6 +30,8 @@ private:
     Ui::MainWindow *ui_;
     BaseSketcher *mainWidget_;
     QImage image_;
+    const int maxImageHeight_;
+    const int maxImageWidth_;
 };
 
 #endif //_QSKETCHER_MAINWINDOW_H_

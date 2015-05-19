@@ -1,16 +1,14 @@
-#ifndef LEVELBASEDSKETCHER_H
-#define LEVELBASEDSKETCHER_H
+#ifndef SMARTLEVELBASEDSKETCHER_H
+#define SMARTLEVELBASEDSKETCHER_H
 #include "baseSketcher.h"
 
 void sortPoints(QVector<BaseSketcher::tQPointPair>& points);
-void smartSortPoints(QVector<BaseSketcher::tQPointPair>& points);
-bool lessThan(const BaseSketcher::tQPointPair &left, const BaseSketcher::tQPointPair &right);
 
-class LevelBasedSketcher : public BaseSketcher{
+class SmartLevelBasedSketcher : public BaseSketcher{
     Q_OBJECT
 public:
-    LevelBasedSketcher(QWidget* parent=0);
-    virtual ~LevelBasedSketcher();
+    SmartLevelBasedSketcher(QWidget* parent=0);
+    virtual ~SmartLevelBasedSketcher();
     virtual void sketch(const QImage &img, int interval);
 private:
     static const int numOfLevels_=5;
@@ -19,4 +17,4 @@ private:
     QVector<QVector<tQPointPair> > levelPoints_;
 };
 
-#endif // LEVELBASEDSKETCHER_H
+#endif // SMARTLEVELBASEDSKETCHER_H

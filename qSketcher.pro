@@ -15,18 +15,18 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    BaseSketcher.cpp \
     originalsketcher.cpp \
     linearsketcher.cpp \
-    smartlinearsketcher.cpp \
-    levelbasedsketcher.cpp
+    levelbasedsketcher.cpp \
+    baseSketcher.cpp \
+    smartlevelbasesketcher.cpp
 
 HEADERS  += mainwindow.h \
     originalsketcher.h \
-    BaseSketcher.h \
     linearsketcher.h \
-    smartlinearsketcher.h \
-    levelbasedsketcher.h
+    levelbasedsketcher.h \
+    baseSketcher.h \
+    smartlevelbasesketcher.h
 
 FORMS    += mainwindow.ui
 

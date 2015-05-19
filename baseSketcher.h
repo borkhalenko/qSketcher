@@ -15,17 +15,19 @@ public:
     ~BaseSketcher();
     virtual void paintEvent(QPaintEvent* event);
     virtual void sketch(const QImage& img, int interval);
-    virtual void changeState(bool state);
+    virtual void changeState();
 signals:
     void sketchIsOver();
 protected:
     QImage innerImage_;
     QVector<tQPointPair> points_;
     bool sketchIsOver_;
+    bool sketchIsPaused_;
     int currentPixel_;
     QTimer* timer_;
 protected slots:
     virtual void sketchStep();
+
 private:
     QPoint& getStartPoint();
     QPoint startPoint_;

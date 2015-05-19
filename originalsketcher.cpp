@@ -21,5 +21,4 @@ void OriginalSketcher::sketchStep(){
     sketchIsOver_=true;
     emit sketchIsOver();
     repaint();
-
 }

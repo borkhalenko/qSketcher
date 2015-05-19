@@ -1,6 +1,6 @@
 #ifndef ORIGINALSKETCHER_H
 #define ORIGINALSKETCHER_H
-#include <BaseSketcher.h>
+#include "baseSketcher.h"
 
 class OriginalSketcher : public BaseSketcher{
 Q_OBJECT

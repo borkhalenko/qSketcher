@@ -1,10 +1,13 @@
-#include "BaseSketcher.h"
+#include "baseSketcher.h"
 #include <iostream>
 #include <QDebug>
 BaseSketcher::BaseSketcher(QWidget *parent)
         : QWidget(parent){
     innerImage_=QImage();
     innerImage_.fill(Qt::white);
+    currentPixel_=0;
+    sketchIsOver_=true;
+    sketchIsPaused_=true;
     imgPencil_=QImage(":/img/rec/pencil.png");
     timer_=new QTimer(this);
 }
@@ -48,16 +51,24 @@ void BaseSketcher::sketchStep() {
     repaint();
 }
 
+
+void BaseSketcher::changeState(){
+    if (sketchIsOver_)
+        return;
+    if (sketchIsPaused_)
+        timer_->start(timeInterval_);
+    else
+        timer_->stop();
+    sketchIsPaused_=!sketchIsPaused_;
+}
+
 void BaseSketcher::sketch(const QImage& img, int interval) {
     timeInterval_=interval;
     innerImage_=QImage(img.size(), img.format());
     innerImage_.fill(Qt::white);
     sketchIsOver_=false;
+    sketchIsPaused_=false;
     connect(timer_, SIGNAL(timeout()), SLOT(sketchStep()));
     connect(this, SIGNAL(sketchIsOver()), timer_, SLOT(stop()));
     timer_->start(timeInterval_);
-}
-
-void BaseSketcher::changeState(bool state){
-    sketchIsOver_=state;
 }

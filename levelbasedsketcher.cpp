@@ -9,7 +9,6 @@ LevelBasedSketcher::LevelBasedSketcher(QWidget *parent)
 }
 
 LevelBasedSketcher::~LevelBasedSketcher(){
-
 }
 
 void LevelBasedSketcher::sketch(const QImage &img, int interval){
@@ -20,11 +19,14 @@ void LevelBasedSketcher::sketch(const QImage &img, int interval){
         for (int w=0; w<imgWidth; ++w){
             QColor color=img.pixel(w,h);
             c=0.3*color.red()+0.59*color.green()+0.11*color.blue();
+            if (color.alpha()==255 && c==0){
+                c=255;
+            }
             for (int i=0; i<numOfLevels_; ++i){
                 if (c>=levels_[i] && c<levels_[i+1]){ //??? <=
                     //if I use levelPoints_.at(i), I get compile error:
                     //error: passing 'const QVector<>' as 'this' argument of 'void QVector<T>::push_back(const T&)  discards qualifiers [-fpermissive]
-                    //because QVector::at (despite std::vector) return only const referencez
+                    //because QVector::at (despite std::vector) return only const reference
                     levelPoints_[i].push_back(qMakePair(QPoint(w,h), QColor(c,c,c).rgb() ));
                     break;
                 }
@@ -33,6 +35,8 @@ void LevelBasedSketcher::sketch(const QImage &img, int interval){
     }
     qDebug()<<"levelPoints_ is filled";
     for (int i=0; i<numOfLevels_; ++i){
+        qDebug()<<"level "<<i<<" is done!";
+        qDebug()<<"Size: "<<levelPoints_[i].size();
         sortPoints(levelPoints_[i]);
         points_<<levelPoints_[i];
     }
@@ -42,7 +46,6 @@ void LevelBasedSketcher::sketch(const QImage &img, int interval){
 
 // Sorting algorithm. It works like selection sort...
 void sortPoints(QVector<BaseSketcher::tQPointPair> &points){
-    qDebug()<<"Vector size:"<<points.size();
     auto endPoint=points.end();
     for(auto i=points.begin(); i!=endPoint-1; ++i){
         auto closer=i+1;
